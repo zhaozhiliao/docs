@@ -1,94 +1,517 @@
 ---
-title: 'Development'
-description: 'Preview changes locally to update your docs'
+title: "常见问题解答"
+description: "本文档收集了 QuickNote 使用过程中的常见问题和解决方案。"
 ---
 
-<Info>
-  **Prerequisites**:
-  - Node.js version 19 or higher
-  - A docs repository with a `docs.json` file
-</Info>
+ 📦 安装问题
 
-Follow these steps to install and run Mintlify on your operating system.
+### Q: 为什么打不开 QuickNote？
 
-<Steps>
-<Step title="Install the Mintlify CLI">
+\*\*A:\*\* 由于应用未签名，macOS 会阻止运行。解决方法：
 
-```bash
-npm i -g mint
-```
-</Step>
+1. \*\*右键打开\*\*（推荐）
+   - 找到 QuickNote.app
+   - 右键点击 → 选择"打开"
+   - 在弹窗中点击"打开"
 
-<Step title="Preview locally">
+2. \*\*系统设置允许\*\*
+   - 系统设置 → 隐私与安全性
+   - 找到"QuickNote 已被阻止"
+   - 点击"仍要打开"
 
-Navigate to your docs directory where your `docs.json` file is located, and run the following command:
+3. \*\*移除隔离属性\*\*
+   \`\`\`bash
+   xattr -d com.apple.quarantine /Applications/QuickNote.app
+   \`\`\`
 
-```bash
-mint dev
-```
+### Q: 提示"应用已损坏"怎么办？
 
-A local preview of your documentation will be available at `http://localhost:3000`.
+\*\*A:\*\* 这通常是下载不完整导致的：
 
-</Step>
-</Steps>
+1. 重新下载 DMG 文件
+2. 验证文件完整性
+3. 使用上述方法打开
 
-## Custom ports
+### Q: 安装后找不到应用？
 
-By default, Mintlify uses port 3000. You can customize the port Mintlify runs on by using the `--port` flag. For example, to run Mintlify on port 3333, use this command:
+\*\*A:\*\* 检查以下位置：
 
-```bash
-mint dev --port 3333
-```
+- 应用程序文件夹：\`/Applications/QuickNote.app\`
+- 菜单栏：查看右上角是否有图标
+- 活动监视器：搜索"QuickNote"确认是否运行
 
-If you attempt to run Mintlify on a port that's already in use, it will use the next available port:
+### Q: 如何卸载 QuickNote？
 
-```md
-Port 3000 is already in use. Trying 3001 instead.
-```
+\*\*A:\*\* 完全卸载步骤：
 
-## Mintlify versions
+\`\`\`bash
+# 1. 退出应用
+pkill QuickNote
 
-Please note that each CLI release is associated with a specific version of Mintlify. If your local preview does not align with the production version, please update the CLI:
+# 2. 删除应用
+rm -rf /Applications/QuickNote.app
 
-```bash
-npm mint update
-```
+# 3. 删除配置（可选）
+rm -rf ~/Library/Application\\ Support/QuickNote
 
-## Validating links
+# 4. 删除数据（可选，会丢失所有笔记）
+rm -rf ~/Documents/QuickNote
+\`\`\`
 
-The CLI can assist with validating links in your documentation. To identify any broken links, use the following command:
+## 🔑 权限问题
 
-```bash
-mint broken-links
-```
+### Q: 没有收到通知？
 
-## Deployment
+\*\*A:\*\* 检查通知权限：
 
-If the deployment is successful, you should see the following:
+1. \*\*QuickNote 设置\*\*
+   - 打开设置 → 通用
+   - 确认"总结完成提醒"已开启
 
-<Frame>
-  <img src="/images/checks-passed.png" alt="Screenshot of a deployment confirmation message that says All checks have passed." style={{ borderRadius: '0.5rem' }} />
-</Frame>
+2. \*\*系统权限\*\*
+   - 系统设置 → 通知 → QuickNote
+   - 确认"允许通知"已开启
+   - 选择通知样式（横幅/提醒）
 
-## Code formatting
+3. \*\*勿扰模式\*\*
+   - 检查是否开启了勿扰模式
+   - 勿扰模式会阻止通知显示
 
-We suggest using extensions on your IDE to recognize and format MDX. If you're a VSCode user, consider the [MDX VSCode extension](https://marketplace.visualstudio.com/items?itemName=unifiedjs.vscode-mdx) for syntax highlighting, and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) for code formatting.
+### Q: 快捷键不工作？
 
-## Troubleshooting
+\*\*A:\*\* 可能需要辅助功能权限：
 
-<AccordionGroup>
-  <Accordion title='Error: Could not load the "sharp" module using the darwin-arm64 runtime'>
+1. 系统设置 → 隐私与安全性 → 辅助功能
+2. 找到 QuickNote
+3. 开启权限
+4. 重启 QuickNote
 
-    This may be due to an outdated version of node. Try the following:
-    1. Remove the currently-installed version of the CLI: `npm remove -g mint`
-    2. Upgrade to Node v19 or higher.
-    3. Reinstall the CLI: `npm i -g mint`
-  </Accordion>
+如果列表中没有 QuickNote：
+- 尝试使用快捷键触发权限请求
+- 手动添加：点击"+"，选择 QuickNote.app
 
-  <Accordion title="Issue: Encountering an unknown error">
-  
-    Solution: Go to the root of your device and delete the `~/.mintlify` folder. Then run `mint dev` again.
-  </Accordion>
-</AccordionGroup>
+### Q: 无法访问文件夹？
 
-Curious about what changed in the latest CLI version? Check out the [CLI changelog](https://www.npmjs.com/package/mintlify?activeTab=versions).
+\*\*A:\*\* 授予文件访问权限：
+
+1. 系统设置 → 隐私与安全性 → 文件和文件夹
+2. 找到 QuickNote
+3. 授予需要的文件夹权限
+
+## 🤖 AI 问题
+
+### Q: 总结生成失败？
+
+\*\*A:\*\* 按以下步骤排查：
+
+1. \*\*检查 AI 配置\*\*
+   - 设置 → AI
+   - 确认已选择提供商
+   - 确认 API Key 正确
+
+2. \*\*测试 API Key\*\*
+   \`\`\`bash
+   # OpenAI
+   curl https://api.openai.com/v1/models \\
+     -H "Authorization: Bearer YOUR_API_KEY"
+   
+   # Anthropic
+   curl https://api.anthropic.com/v1/messages \\
+     -H "x-api-key: YOUR_API_KEY"
+   \`\`\`
+
+3. \*\*检查网络连接\*\*
+   - 确认能访问 AI 服务
+   - 检查代理设置
+
+4. \*\*查看错误信息\*\*
+   - 打开总结窗口
+   - 查看失败的总结
+   - 阅读错误提示
+
+\*\*常见错误:\*\*
+
+| 错误 | 原因 | 解决方法 |
+|------|------|----------|
+| Invalid API Key | API Key 错误 | 检查并重新输入 |
+| Rate limit exceeded | 超过调用限制 | 等待或升级套餐 |
+| Network error | 网络问题 | 检查网络连接 |
+| Model not found | 模型名称错误 | 检查模型名称 |
+
+### Q: 如何获取 API Key？
+
+\*\*A:\*\* 各平台获取方式：
+
+\*\*OpenAI:\*\*
+1. 访问 https://platform.openai.com/
+2. 登录账号
+3. API Keys → Create new secret key
+4. 复制并保存（只显示一次）
+
+\*\*Anthropic:\*\*
+1. 访问 https://console.anthropic.com/
+2. 登录账号
+3. API Keys → Create Key
+4. 复制并保存
+
+\*\*注意:\*\*
+- API Key 只显示一次，务必保存
+- 不要分享给他人
+- 定期轮换密钥
+
+### Q: AI 总结质量不好？
+
+\*\*A:\*\* 优化建议：
+
+1. \*\*使用更强大的模型\*\*
+   - OpenAI: gpt-4 \> gpt-4-turbo \> gpt-3.5-turbo
+   - Anthropic: opus \> sonnet \> haiku
+
+2. \*\*优化 Prompt\*\*
+   - 参考 [Prompt 优化指南](prompt-optimization.md)
+   - 提供更明确的要求
+   - 添加示例输出
+
+3. \*\*改善笔记质量\*\*
+   - 写更详细的笔记
+   - 使用结构化格式
+   - 添加上下文信息
+
+### Q: AI 调用很慢？
+
+\*\*A:\*\* 可能的原因和解决方法：
+
+1. \*\*网络延迟\*\*
+   - 检查网络速度
+   - 考虑使用代理
+
+2. \*\*模型选择\*\*
+   - 使用更快的模型（如 gpt-3.5-turbo）
+   - 减少输入内容长度
+
+3. \*\*API 限制\*\*
+   - 检查是否达到速率限制
+   - 升级 API 套餐
+
+## 🌐 Webhook 问题
+
+### Q: Webhook 发送失败？
+
+\*\*A:\*\* 排查步骤：
+
+1. \*\*检查 URL\*\*
+   - 确认 URL 正确
+   - 测试 URL 是否可访问
+
+2. \*\*检查请求格式\*\*
+   - 验证 JSON 格式正确
+   - 检查必需字段
+
+3. \*\*查看错误日志\*\*
+   - 设置 → 统计
+   - 查看 Webhook 统计
+   - 检查错误信息
+
+4. \*\*测试 Webhook\*\*
+   \`\`\`bash
+   curl -X POST https://your-webhook-url \\
+     -H "Content-Type: application/json" \\
+     -d '{"test": "data"}'
+   \`\`\`
+
+### Q: Webhook 收到的数据不对？
+
+\*\*A:\*\* 检查配置：
+
+1. \*\*请求体模板\*\*
+   - 设置 → Webhook
+   - 检查模板语法
+   - 验证变量名称
+
+2. \*\*发送模式\*\*
+   - 全文发送：发送完整内容
+   - AI 智能分析：发送相关内容
+   - 确认选择了正确的模式
+
+3. \*\*测试发送\*\*
+   - 点击"测试"按钮
+   - 检查接收端数据
+   - 对比预期格式
+
+### Q: AI 路由不准确？
+
+\*\*A:\*\* 优化路由配置：
+
+1. \*\*完善用途描述\*\*
+   - 写清楚每个 Webhook 的用途
+   - 提供具体的关键词
+   - 避免模糊描述
+
+2. \*\*添加自定义规则\*\*
+   - 在"AI 路由自定义规则"中添加指导
+   - 提供分类标准
+   - 举例说明
+
+3. \*\*使用更强的模型\*\*
+   - gpt-4 的理解能力更强
+   - 路由准确度更高
+
+## 📝 使用问题
+
+### Q: 快捷键冲突怎么办？
+
+\*\*A:\*\* 自定义快捷键：
+
+1. 设置 → 通用 → 快捷键设置
+2. 点击要修改的快捷键
+3. 按下新的组合键
+4. 确认没有与其他应用冲突
+
+\*\*建议:\*\*
+- 使用 \`⌘⌥\` 组合
+- 避免系统快捷键
+- 选择容易记忆的组合
+
+### Q: 笔记保存在哪里？
+
+\*\*A:\*\* 默认位置：
+
+\`\`\`
+笔记: ~/Documents/QuickNote/Notes
+总结: ~/Documents/QuickNote/Summaries
+\`\`\`
+
+\*\*查看方式:\*\*
+\`\`\`bash
+# 打开笔记文件夹
+open ~/Documents/QuickNote/Notes
+
+# 列出所有笔记
+ls -l ~/Documents/QuickNote/Notes
+\`\`\`
+
+\*\*修改位置:\*\*
+- 设置 → 通用 → 存储设置
+- 选择新的文件夹
+
+### Q: 如何导出笔记？
+
+\*\*A:\*\* 笔记已经是 Markdown 格式，可以直接使用：
+
+\*\*方法 1: 直接复制\*\*
+\`\`\`bash
+cp -r ~/Documents/QuickNote /path/to/backup
+\`\`\`
+
+\*\*方法 2: 导入其他应用\*\*
+- Obsidian: 将文件夹设为 vault
+- Notion: 导入 Markdown 文件
+- Bear: 拖拽文件到应用
+
+\*\*方法 3: 版本控制\*\*
+\`\`\`bash
+cd ~/Documents/QuickNote
+git init
+git add .
+git commit -m "备份笔记"
+\`\`\`
+
+### Q: 可以同步到云端吗？
+
+\*\*A:\*\* 可以，有多种方式：
+
+\*\*iCloud Drive:\*\*
+\`\`\`bash
+# 移动到 iCloud
+mv ~/Documents/QuickNote ~/Library/Mobile\\ Documents/com~apple~CloudDocs/QuickNote
+
+# 在设置中更新路径
+\`\`\`
+
+\*\*Dropbox:\*\*
+\`\`\`bash
+# 移动到 Dropbox
+mv ~/Documents/QuickNote ~/Dropbox/QuickNote
+
+# 在设置中更新路径
+\`\`\`
+
+\*\*Git 同步:\*\*
+\`\`\`bash
+cd ~/Documents/QuickNote
+git init
+git remote add origin YOUR_REPO_URL
+git push -u origin main
+\`\`\`
+
+### Q: 总结时间可以修改吗？
+
+\*\*A:\*\* 可以：
+
+1. 设置 → Prompt
+2. 在"定时总结"中修改时间
+3. 格式：HH:mm（24小时制）
+4. 例如：23:30、09:00
+
+### Q: 如何备份数据？
+
+\*\*A:\*\* 推荐的备份方式：
+
+\*\*自动备份（推荐）:\*\*
+\`\`\`bash
+# 创建备份脚本
+cat \> ~/backup-quicknote.sh \<\< 'EOF'
+#!/bin/bash
+DATE=\$(date +%Y%m%d)
+tar -czf ~/Backups/QuickNote-\$DATE.tar.gz ~/Documents/QuickNote
+EOF
+
+chmod +x ~/backup-quicknote.sh
+
+# 添加到 crontab（每天备份）
+crontab -e
+# 添加: 0 2 \* \* \* ~/backup-quicknote.sh
+\`\`\`
+
+\*\*手动备份:\*\*
+\`\`\`bash
+# 压缩备份
+tar -czf QuickNote-backup-\$(date +%Y%m%d).tar.gz ~/Documents/QuickNote
+
+# 恢复备份
+tar -xzf QuickNote-backup-20260119.tar.gz -C ~/Documents/
+\`\`\`
+
+## 🔧 性能问题
+
+### Q: QuickNote 占用内存太多？
+
+\*\*A:\*\* 优化建议：
+
+1. \*\*重启应用\*\*
+   - 定期重启 QuickNote
+   - 清理内存缓存
+
+2. \*\*减少统计数据\*\*
+   - 定期清理日志文件
+   - 关闭不需要的统计
+
+3. \*\*优化笔记数量\*\*
+   - 归档旧笔记
+   - 定期清理无用笔记
+
+### Q: 启动速度慢？
+
+\*\*A:\*\* 可能的原因：
+
+1. \*\*笔记数量过多\*\*
+   - 移动旧笔记到归档文件夹
+   - 只保留近期笔记
+
+2. \*\*存储路径问题\*\*
+   - 使用本地路径而非网络路径
+   - 避免使用加密文件夹
+
+3. \*\*系统资源不足\*\*
+   - 关闭其他应用
+   - 重启 Mac
+
+## 🐛 Bug 报告
+
+### Q: 发现 Bug 怎么办？
+
+\*\*A:\*\* 报告步骤：
+
+1. \*\*收集信息\*\*
+   - QuickNote 版本
+   - macOS 版本
+   - 重现步骤
+   - 错误截图
+
+2. \*\*提交 Issue\*\*
+   - 访问 https://github.com/zhaozhiliao/QuickNote/issues
+   - 点击"New Issue"
+   - 填写详细信息
+   - 提交
+
+3. \*\*临时解决\*\*
+   - 重启应用
+   - 重置设置
+   - 降级版本
+
+### Q: 如何查看日志？
+
+\*\*A:\*\* 日志位置：
+
+\`\`\`bash
+# 应用日志
+~/Library/Application Support/QuickNote/logs/
+
+# 查看最新日志
+tail -f ~/Library/Application\\ Support/QuickNote/logs/app.log
+
+# 系统日志
+log show --predicate 'process == "QuickNote"' --last 1h
+\`\`\`
+
+## 💡 使用技巧
+
+### Q: 如何提高笔记效率？
+
+\*\*A:\*\* 建议：
+
+1. \*\*使用快捷键\*\*
+   - 熟练使用 ⌘K
+   - 自定义顺手的快捷键
+
+2. \*\*结构化记录\*\*
+   - 使用 Markdown 格式
+   - 添加标题和列表
+   - 标记重要内容
+
+3. \*\*及时记录\*\*
+   - 随时记录想法
+   - 不要等到完美再记录
+   - 定期回顾和整理
+
+### Q: 如何充分利用 AI 功能？
+
+\*\*A:\*\* 最佳实践：
+
+1. \*\*优化 Prompt\*\*
+   - 参考 [Prompt 优化指南](prompt-optimization.md)
+   - 提供明确的要求
+   - 使用示例
+
+2. \*\*选择合适的模型\*\*
+   - 日常总结：gpt-3.5-turbo
+   - 深度分析：gpt-4
+   - 长文本：claude-3-sonnet
+
+3. \*\*定期调整\*\*
+   - 根据效果调整 Prompt
+   - 尝试不同的模板
+   - 收集反馈改进
+
+## 🆘 获取更多帮助
+
+如果以上内容没有解决你的问题：
+
+1. \*\*查看文档\*\*
+   - [快速入门](getting-started.md)
+   - [功能详解](features.md)
+   - [配置指南](configuration.md)
+
+2. \*\*社区支持\*\*
+   - [GitHub Issues](https://github.com/zhaozhiliao/QuickNote/issues)
+   - [GitHub Discussions](https://github.com/zhaozhiliao/QuickNote/discussions)
+
+3. \*\*联系开发者\*\*
+   - 在 GitHub 上提 Issue
+   - 提供详细的问题描述
+   - 附上相关日志和截图
+
+---
+
+\*\*提示\*` 本文档会持续更新，欢迎提交你遇到的问题和解决方案！
+`

@@ -1,79 +1,188 @@
 ---
-title: "Quickstart"
-description: "Start building awesome documentation in minutes"
+title: "快速入门指南"
+description: "欢迎使用 QuickNote！本指南将帮助你在 5 分钟内开始使用 QuickNote。"
 ---
 
-## Get started in three steps
+## 📦 安装
 
-Get your documentation site running locally and make your first customization.
+### 系统要求
 
-### Step 1: Set up your local environment
+- macOS 13.0 或更高版本
+- 网络连接（用于 AI 功能）
 
-<AccordionGroup>
-  <Accordion title="Clone your docs locally" icon="copy">
-    During the onboarding process, you created a GitHub repository with your docs content if you didn't already have one. You can find a link to this repository in your [dashboard](https://dashboard.mintlify.com).
+### 安装步骤
 
-    To clone the repository locally so that you can make and preview changes to your docs, follow the [Cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) guide in the GitHub docs.
-  </Accordion>
-  <Accordion title="Start the preview server" icon="rectangle-terminal">
-    1. Install the Mintlify CLI: `npm i -g mint`
-    2. Navigate to your docs directory and run: `mint dev`
-    3. Open `http://localhost:3000` to see your docs live!
+1. \*\*下载 QuickNote\*\*
+   - 从 [GitHub Releases](https://github.com/zhaozhiliao/QuickNote/releases) 下载最新的 \`QuickNote-v0.1.dmg\`
+2. \*\*安装应用\*\*
+   - 双击打开 DMG 文件
+   - 将 QuickNote.app 拖拽到"应用程序"文件夹
+3. \*\*首次运行\*\*
+   - 打开"应用程序"文件夹
+   - 找到 QuickNote.app
+   - \*\*右键点击\*\* → 选择"打开"
+   - 在弹出的对话框中点击"打开"
 
-    <Tip>
-      Your preview updates automatically as you edit files.
-    </Tip>
-  </Accordion>
-</AccordionGroup>
+   \> ⚠️ \*\*注意\*\*: 由于应用未签名，首次运行必须右键打开
+4. \*\*授予权限\*\*
+   - 系统会请求通知权限，点击"允许"
+   - 如需使用快捷键，可能需要授予辅助功能权限
 
-### Step 2: Deploy your changes
+## 🎯 首次配置
 
-<AccordionGroup>
-  <Accordion title="Install our GitHub app" icon="github">
-    Install the Mintlify GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app).
+### 1. 查看菜单栏
 
-    Our GitHub app automatically deploys your changes to your docs site, so you don't need to manage deployments yourself.
-  </Accordion>
-  <Accordion title="Update your site name and colors" icon="palette">
-    For a first change, let's update the name and colors of your docs site.
+安装成功后，你会在菜单栏右上角看到 QuickNote 的图标（📝）。
 
-    1. Open `docs.json` in your editor.
-    2. Change the `"name"` field to your project name.
-    3. Update the `"colors"` to match your brand.
-    4. Save and see your changes instantly at `http://localhost:3000`.
+点击图标可以看到以下选项：
 
-    <Tip>
-      Try changing the primary color to see an immediate difference!
-    </Tip>
-  </Accordion>
-</AccordionGroup>
+- 快速输入 (⌘K)
+- 查看总结 (⌘S)
+- 查看历史
+- 设置
+- 退出
 
-### Step 3: Go live
+### 2. 配置 AI 服务（可选）
 
-<Accordion title="Publish your docs" icon="rocket">
-  1. Commit and push your changes.
-  2. Your docs will update and be live in moments!
-</Accordion>
+如果你想使用 AI 总结功能，需要配置 AI 服务：
 
-## Next steps
+1. 点击菜单栏图标 → \*\*设置\*\*
+2. 切换到 \*\*AI\*\* 标签页
+3. 选择 AI 提供商：
+   - \*\*OpenAI\*\*: 使用 ChatGPT
+   - \*\*Anthropic\*\*: 使用 Claude
+   - \*\*自定义\*\*: 使用兼容 OpenAI 格式的 API
+4. 输入 API Key
+5. 选择模型（如 gpt-4、claude-3-sonnet 等）
 
-Now that you have your docs running, explore these key features:
+\> 💡 \*\*提示\*\*: 如果暂时不配置 AI，你仍然可以使用笔记功能
 
-<CardGroup cols={2}>
-  <Card title="Write Content" icon="pen-to-square" href="/essentials/markdown">
-    Learn MDX syntax and start writing your documentation.
-  </Card>
-  <Card title="Customize style" icon="palette" href="/essentials/settings">
-    Make your docs match your brand perfectly.
-  </Card>
-  <Card title="Add code examples" icon="square-code" href="/essentials/code">
-    Include syntax-highlighted code blocks.
-  </Card>
-  <Card title="API documentation" icon="code" href="/api-reference/introduction">
-    Auto-generate API docs from OpenAPI specs.
-  </Card>
-</CardGroup>
+### 3. 设置存储路径（可选）
 
-<Note>
-  **Need help?** See our [full documentation](https://mintlify.com/docs) or join our [community](https://mintlify.com/community).
-</Note>
+默认情况下，QuickNote 会将数据保存在：
+
+- 笔记: \`~/Documents/QuickNote/Notes\`
+- 总结: \`~/Documents/QuickNote/Summaries\`
+
+如需修改：
+
+1. 打开设置 → \*\*通用\*\* 标签页
+2. 在"存储设置"中修改路径
+
+## ✍️ 开始使用
+
+### 记录第一条笔记
+
+1. \*\*打开快速输入\*\*
+   - 按下快捷键 \`⌘K\`
+   - 或点击菜单栏图标 → "快速输入"
+2. \*\*输入内容\*\* \`\`\` 今天学习了 SwiftUI，感觉很有趣
+   - 学会了使用 @State
+   - 理解了数据绑定 \`\`\`
+3. \*\*保存笔记\*\*
+   - 按 \`⌘Enter\` 保存
+   - 或点击"保存"按钮
+
+✅ 你的第一条笔记已保存！
+
+### 查看笔记历史
+
+1. 点击菜单栏图标 → \*\*查看历史\*\*
+2. 在历史窗口中可以看到所有笔记
+3. 支持搜索和筛选
+
+### 生成 AI 总结
+
+QuickNote 会在每天的指定时间自动生成总结，你也可以手动触发：
+
+1. 点击菜单栏图标 → \*\*查看总结\*\*
+2. 在总结窗口中，点击"生成今日总结"
+3. 等待 AI 处理（需要已配置 AI 服务）
+4. 查看生成的总结
+
+## 🎨 界面导览
+
+### 快速输入窗口
+
+- \*\*文本编辑区\*\*: 输入笔记内容，支持 Markdown
+- \*\*保存按钮\*\*: 保存当前笔记
+- \*\*快捷键提示\*\*: 显示可用的快捷键
+
+### 总结窗口
+
+- \*\*左侧列表\*\*: 显示所有总结，按日期排序
+- \*\*右侧详情\*\*: 显示选中总结的内容
+- \*\*生成按钮\*\*: 手动触发总结生成
+- \*\*统计信息\*\*: 显示笔记数量、字数等
+
+### 设置窗口
+
+分为多个标签页：
+
+- \*\*通用\*\*: 快捷键、存储、提醒设置
+- \*\*文件\*\*: 元数据配置
+- \*\*AI\*\*: AI 服务配置
+- \*\*Prompt\*\*: 总结模板管理
+- \*\*Webhook\*\*: 集成配置
+- \*\*统计\*\*: 使用数据分析
+
+## ⌨️ 常用快捷键
+
+| 功能   | 快捷键        | 说明         |
+| ---- | ---------- | ---------- |
+| 快速输入 | \`⌘K\`     | 打开笔记输入窗口   |
+| 查看总结 | \`⌘S\`     | 打开总结查看窗口   |
+| 保存笔记 | \`⌘Enter\` | 在快速输入窗口中保存 |
+
+\> 💡 所有快捷键都可以在设置中自定义
+
+## 📝 使用技巧
+
+### 1. Markdown 支持
+
+QuickNote 完全支持 Markdown 语法：
+
+\`\`\`markdown
+
+# 标题
+
+\*\*粗体\*\* \*斜体\*
+
+- 列表项
+- 待办事项 [链接](https://example.com) \`\`\`
+
+### 2. 快速记录
+
+- 使用 \`⌘K\` 随时记录想法
+- 不需要切换应用，记录完自动关闭
+- 支持多行文本和代码块
+
+### 3. 定时总结
+
+- 在设置中配置每日总结时间（默认 23:30）
+- QuickNote 会自动生成当天的笔记总结
+- 总结完成后会发送系统通知
+
+### 4. 笔记组织
+
+- 每条笔记自动添加时间戳
+- 支持代码块、链接、待办事项识别
+- 可以通过元数据添加标签和分类
+
+## 🎯 下一步
+
+现在你已经掌握了基础使用，可以：
+
+1. 📖 阅读 [功能详解](features.md) 了解更多功能
+2. ⚙️ 查看 [配置指南](configuration.md) 进行个性化设置
+3. 🤖 学习 [AI 配置详解](ai-setup.md) 充分利用 AI 功能
+4. 💡 参考 [最佳实践](best-practices.md) 提高效率
+
+## ❓ 遇到问题？
+
+- 查看 [常见问题](faq.md)
+- 访问 [GitHub Issues](https://github.com/zhaozhiliao/QuickNote/issues)
+
+---
+
+\*\*恭喜！\*\* 你已经完成了 QuickNote 的快速入门。开始享受高效的笔记体验吧！ 🎉
