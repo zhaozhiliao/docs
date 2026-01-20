@@ -31,7 +31,9 @@
     "tabs": [
       {
         "tab": "Guides",
-        "groups": [
+        "pages": [
+          "api-reference/getting-started",
+          "api-reference/faq",
           {
             "group": "新手入门",
             "pages": [
@@ -41,48 +43,24 @@
             ]
           },
           {
-            "group": "Customization",
+            "group": "功能详解",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "api-reference/features",
+              "api-reference/configuration",
+              "api-reference/best-practices"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "高级主题",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
+              "api-reference/ai-setup",
+              "api-reference/webhook-guide",
+              "api-reference/prompt-optimization"
             ]
           },
           {
-            "group": "AI tools",
-            "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "API reference",
-        "groups": [
-          {
-            "group": "API documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Endpoint examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
-            ]
+            "group": "常用操作",
+            "pages": []
           }
         ]
       }
