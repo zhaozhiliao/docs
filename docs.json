@@ -32,6 +32,8 @@
       {
         "tab": "Guides",
         "pages": [
+          "guides/untitled-page-1",
+          "guides/untitled-page",
           "api-reference/getting-started",
           "api-reference/faq",
           {
